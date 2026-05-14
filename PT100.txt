@@ -1,0 +1,24 @@
+const int pinPT100 = 34;  // Pin ADC (puedes cambiarlo)
+
+float m = 0.40;
+float b = -645.2;
+
+void setup() {
+  Serial.begin(9600);
+  analogReadResolution(12); // 0–4095
+}
+
+void loop() {
+  int adcValue = analogRead(pinPT100);
+
+  // Convertir a temperatura
+  float temperatura = (m * adcValue) + b;
+
+  Serial.print("ADC: ");
+  Serial.print(adcValue);
+  Serial.print(" | Temperatura: ");
+  Serial.print(temperatura);
+  Serial.println(" °C");
+
+  delay(5000);
+}
